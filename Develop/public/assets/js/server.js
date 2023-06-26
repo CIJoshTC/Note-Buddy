@@ -14,3 +14,17 @@ app.get('/api/notes', (req, res) => {
 
   res.json(notes);
 });
+
+app.post('/api/notes', (req, res) => {
+    const newNote = req.body;
+    
+    const notes = JSON.parse(fs.readFileSync(path.join(__dirname, 'db.json')));
+    
+    newNote.id = Date.now();
+
+    notes.push(newNote);
+
+    fs.writeFileSync(path.join(__dirname, 'db.json'), JSON.stringify(notes));
+
+    res.json(newNote);
+});
