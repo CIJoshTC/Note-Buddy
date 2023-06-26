@@ -41,3 +41,7 @@ app.delete('/api/notes/:id', (req, res) => {
     res.sendStatus(204);
 });
 
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'notes.html'));
+  });
+
